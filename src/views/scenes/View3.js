@@ -1,4 +1,6 @@
 // @flow
+import { defaultLifeCycle } from 'aq-miniapp-core';
+
 import { HexiGroup, HexiButton } from '../../components';
 import Assets, { DynamicAssets, DYNAMIC_ASSETS } from '../../assets';
 
@@ -72,7 +74,7 @@ export default class View1 extends HexiGroup {
 
     const messageIndex = this.retryCount < SORRY_MESSAGES.length ? this.retryCount : SORRY_MESSAGES.length - 1;
     const buttonIndex = this.result ? SORRY_BUTTONS.length - 1 : messageIndex;
-
+/*
     while (this.imageHolder.children.length > 0) this.imageHolder.removeChildAt(0);
     if (this.button) {
       this.scene.remove(this.button.scene);
@@ -89,7 +91,8 @@ export default class View1 extends HexiGroup {
       (this.height - BUTTON_HEIGHT) - BUTTON_BOTTOM_PAD
     )
     this.scene.addChild(this.button.scene);
-
+*/
+    let doBlur = false;
     let image = null;
     // If win, use provided winImage, or default happy smiley
     if (this.result) {
@@ -104,6 +107,7 @@ export default class View1 extends HexiGroup {
       // Max retries should use sorry image
       if (buttonIndex === SORRY_BUTTONS.length - 1){
         image = Assets.images.sorry;
+        doBlur = true;
       }
       else {
         // Use sad smiley if lose
@@ -127,6 +131,17 @@ export default class View1 extends HexiGroup {
     this.imageHolder.position.y = this.center.y + 50;
     TweenMax.to(this.imageHolder, .2, { pixi: { y: this.center.y, scaleX: 1, scaleY: 1 }, ease: Back.easeOut });
     TweenMax.to(this.imageHolder, .3, { pixi: { alpha: 1 }, ease: Sine.easeOut });
+
+    if (doBlur) {
+      setTimeout(() => {
+        var filter = new PIXI.filters.BlurFilter(0, 3);
+        filter.blur = 0;
+        this.scene.parent.filters = [filter];
+        TweenMax.to(filter, 1.5, { blur: 10, ease: Power3.easeInOut });
+
+        defaultLifeCycle.end();
+      }, 5 * 1000);
+    }
   }
 
   _sceneReset() {
