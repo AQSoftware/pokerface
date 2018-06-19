@@ -216,12 +216,14 @@ export default class SmileysMoving {
     }
 
     _start() {
+        if(this.isGameOn) return;
         this.isGameOn = true;
         this._shiftAllUp();
         this.intId = setInterval(this._shiftAllUp.bind(this), PAGE_SHIFT_TIME * 1000);
     }
 
     _stop() {
+        if(!this.isGameOn) return;
         this.isGameOn = false;
         if (this.intId) {
             clearInterval(this.intId);
