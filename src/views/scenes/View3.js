@@ -34,17 +34,17 @@ const SORRY_BUTTONS = [
 export default class View1 extends HexiGroup {
 
   setup() {
-    // this.button = new HexiButton(this.hexi, 227, 69, {
-    //   title: 'Done',
-    //   textureAtlas: Assets.textures.button,
-    //   onPress: this.props.onPress
-    // });
-    // this.button.setup();
-    // this.button.scene.setPosition(
-    //   (this.width - BUTTON_WIDTH) / 2.0,
-    //   (this.height - BUTTON_HEIGHT) - BUTTON_BOTTOM_PAD
-    // )
-    // this.scene.addChild(this.button.scene);
+    this.button = new HexiButton(this.hexi, 227, 69, {
+      title: 'Done',
+      textureAtlas: Assets.textures.button,
+      onPress: this.props.onPress
+    });
+    this.button.setup();
+    this.button.scene.setPosition(
+      (this.width - BUTTON_WIDTH) / 2.0,
+      (this.height - BUTTON_HEIGHT) - BUTTON_BOTTOM_PAD
+    )
+    this.scene.addChild(this.button.scene);
 
     this.center = { x: this.width / 2, y: this.height / 2 };
 
@@ -74,7 +74,7 @@ export default class View1 extends HexiGroup {
 
     const messageIndex = this.retryCount < SORRY_MESSAGES.length ? this.retryCount : SORRY_MESSAGES.length - 1;
     const buttonIndex = this.result ? SORRY_BUTTONS.length - 1 : messageIndex;
-/*
+
     while (this.imageHolder.children.length > 0) this.imageHolder.removeChildAt(0);
     if (this.button) {
       this.scene.remove(this.button.scene);
@@ -91,7 +91,7 @@ export default class View1 extends HexiGroup {
       (this.height - BUTTON_HEIGHT) - BUTTON_BOTTOM_PAD
     )
     this.scene.addChild(this.button.scene);
-*/
+
     let doBlur = false;
     let image = null;
     // If win, use provided winImage, or default happy smiley
@@ -133,6 +133,8 @@ export default class View1 extends HexiGroup {
     TweenMax.to(this.imageHolder, .3, { pixi: { alpha: 1 }, ease: Sine.easeOut });
 
     if (doBlur) {
+      this.scene.removeChild(this.button.scene);
+
       setTimeout(() => {
         var filter = new PIXI.filters.BlurFilter(0, 3);
         filter.blur = 0;
