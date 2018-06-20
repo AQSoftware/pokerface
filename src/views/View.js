@@ -131,6 +131,7 @@ export default class View {
   _setPage(page: number) {
     this.pageNumber = page;
     this._updateScene();
+    this.scenes[i]['scene'].scene.parent.filters = [];
   }
 
   _updateScene() {
