@@ -35,7 +35,7 @@ const RESOLUTION_SCALE = GAME_HEIGHT / window.innerHeight;
 const GAME_WIDTH = window.innerWidth * RESOLUTION_SCALE;
 // const GAME_HEIGHT = window.innerHeight * RESOLUTION_SCALE;
 const FPS = 30;
-const DEVT = false;
+const DEVT = true;
 
 const credentials = {
   id: 'GQ9JsIkvEeePub7saR1uXQ',
