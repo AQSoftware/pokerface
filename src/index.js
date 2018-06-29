@@ -35,7 +35,7 @@ const RESOLUTION_SCALE = GAME_HEIGHT / window.innerHeight;
 const GAME_WIDTH = window.innerWidth * RESOLUTION_SCALE;
 // const GAME_HEIGHT = window.innerHeight * RESOLUTION_SCALE;
 const FPS = 30;
-const DEVT = false;
+const DEVT = true;
 
 const credentials = {
   id: 'GQ9JsIkvEeePub7saR1uXQ',
@@ -56,9 +56,15 @@ let _props: ViewProps = {
 };
 
 defaultLifeCycle.setOnDataCallback(onData);
-defaultLifeCycle.setOnResetCallback(onData);
+defaultLifeCycle.setOnResetCallback(onReset);
+
+function onReset(data: Object){
+  console.log('///// onReset');
+  onData(data);
+}
 
 function onData(data: Object){
+  console.log('===== onData');
   _props.data = data;
   // _props.app.width = window.innerWidth * RESOLUTION_SCALE;
   // _props.app.height = window.innerHeight * RESOLUTION_SCALE;
