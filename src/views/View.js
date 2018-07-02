@@ -84,7 +84,8 @@ export default class View {
     this.scenes.push({
       name: 'view3', scene: new View3(this.hexi, props.app.width, props.app.height, {
         winImage: winImage,
-        onPress: this._onView3Click.bind(this)
+        onPress: this._onView3Click.bind(this),
+        _onReset: this.onReset.bind(this)
       })
     });
 
@@ -96,6 +97,7 @@ export default class View {
   }
 
   onReset(data: Object){
+    console.log('***** onReset');    
     this.backgroundScene.showBackground(1);
     this.isWin = false;
     this.retryCount = 0;
@@ -122,16 +124,18 @@ export default class View {
     for (let i = 0; i < this.scenes.length; i++) {
       this.scenes[i]['scene'].setup();
     }
-    this._setPage(0);
+    this._setPage(2);
 
     // Inform AQ App that it is ready to display the content after a specific delay
     setTimeout(() => {defaultLifeCycle.informReady();}, 200);
   }
 
   _setPage(page: number) {
+    console.log('################ setPage '+page);
+    console.log('window.lastSceneParent == ', window.lastSceneParent);
+    if(window.lastSceneParent) window.lastSceneParent.filters = [];
     this.pageNumber = page;
     this._updateScene();
-    this.scenes[page]['scene'].scene.parent.filters = [];
   }
 
   _updateScene() {
@@ -142,26 +146,48 @@ export default class View {
   }
 
   _onView1Click() {
-    this._setPage(1);
-    this.backgroundScene.showBackground(0);
-    defaultLifeCycle.start();
+    this.blockMultClicks(function () {
+
+      this._setPage(1);
+      this.backgroundScene.showBackground(0);
+      defaultLifeCycle.start();
+
+    }.bind(this));
   }
 
   _onView2Click() {
-    this.backgroundScene.showBackground(2);
-    this._setPage(2);
+    this.blockMultClicks(function () {    
 
+      this.backgroundScene.showBackground(2);
+      this._setPage(2);
+
+    }.bind(this));
   }
 
   _onView3Click() {
-    // this._setPage(0);
-    if (!this.isWin && this.retryCount < MAX_RETRIES) {
-      this.backgroundScene.showBackground(0);
-      this._setPage(1);
-    }
-    else {
-      this.backgroundScene.showBackground(2);
-      defaultLifeCycle.end();
+    console.log('---------------- _onView3Click()');
+    this.blockMultClicks(function () {
+
+      if (!this.isWin && this.retryCount < MAX_RETRIES) {
+        console.log('------------------ try again');
+        this.backgroundScene.showBackground(0);
+        this._setPage(1);
+      }
+      else {
+        console.log('----------------- 0');
+        this.backgroundScene.showBackground(2);
+        defaultLifeCycle.end();
+      }
+      
+    }.bind(this));
+  }
+
+  blockMultClicks(callback) {
+    window.lastClickTime = window.lastClickTime || 0;
+    var clickTime = new Date().getTime();
+    if (clickTime - window.lastClickTime > 500) {
+      window.lastClickTime = clickTime;
+      callback();
     }
   }
 

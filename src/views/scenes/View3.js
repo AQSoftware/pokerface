@@ -31,7 +31,7 @@ const SORRY_BUTTONS = [
   "Next"
 ]
 
-export default class View1 extends HexiGroup {
+export default class View3 extends HexiGroup {
 
   setup() {
     this.button = new HexiButton(this.hexi, 227, 69, {
@@ -53,6 +53,12 @@ export default class View1 extends HexiGroup {
       this.center.x,
       this.center.y
     );
+    this.imageHolder.interactive = true;
+    this.imageHolder.on('click', function(){
+      this.props._onReset();
+    }.bind(this));
+    
+    this.imageHolder.parent.removeChild(this.imageHolder);
     this.scene.addChild(this.imageHolder);
 
     this._sceneReset();
@@ -139,10 +145,12 @@ export default class View1 extends HexiGroup {
         var filter = new PIXI.filters.BlurFilter(0, 3);
         filter.blur = 0;
         this.scene.parent.filters = [filter];
+        window.lastSceneParent = this.scene.parent;
+        window.lastSceneParent.aaaaaaaaaa___THIS = "THIS!!!!!";
         TweenMax.to(filter, 1.5, { blur: 10, ease: Power3.easeInOut });
 
         defaultLifeCycle.end();
-      }, 5 * 1000);
+      }, 5 * 1000);// 5
     }
   }
 
