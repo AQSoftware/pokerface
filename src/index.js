@@ -56,12 +56,7 @@ let _props: ViewProps = {
 };
 
 defaultLifeCycle.setOnDataCallback(onData);
-defaultLifeCycle.setOnResetCallback(onReset);
 
-function onReset(data: Object){
-  console.log('///// onReset');
-  onData(data);
-}
 
 function onData(data: Object){
   console.log('===== onData');
