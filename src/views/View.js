@@ -124,7 +124,7 @@ export default class View {
     for (let i = 0; i < this.scenes.length; i++) {
       this.scenes[i]['scene'].setup();
     }
-    this._setPage(0);
+    this._setPage(2);
 
     // Inform AQ App that it is ready to display the content after a specific delay
     setTimeout(() => {defaultLifeCycle.informReady();}, 200);
@@ -178,7 +178,7 @@ export default class View {
         this.backgroundScene.showBackground(2);
         defaultLifeCycle.end();
       }
-
+      
     }.bind(this));
   }
 
