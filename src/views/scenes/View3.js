@@ -145,12 +145,14 @@ export default class View3 extends HexiGroup {
         var filter = new PIXI.filters.BlurFilter(0, 3);
         filter.blur = 0;
         this.scene.parent.filters = [filter];
-        window.lastSceneParent = this.scene.parent;
-        window.lastSceneParent.aaaaaaaaaa___THIS = "THIS!!!!!";
+        // window.lastSceneParent = this.scene.parent;
+        // window.lastSceneParent.aaaaaaaaaa___THIS = "THIS!!!!!";
         TweenMax.to(filter, 1.5, { blur: 10, ease: Power3.easeInOut });
 
         defaultLifeCycle.end();
-      }, 5 * 1000);// 5
+      }, 5 * 1000);
+    } else {
+      setTimeout(defaultLifeCycle.end, 5 * 1000);
     }
   }
 

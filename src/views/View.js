@@ -131,9 +131,9 @@ export default class View {
   }
 
   _setPage(page: number) {
-    console.log('################ setPage '+page);
-    console.log('window.lastSceneParent == ', window.lastSceneParent);
-    if(window.lastSceneParent) window.lastSceneParent.filters = [];
+    // console.log('################ setPage '+page);
+    // console.log('window.lastSceneParent == ', window.lastSceneParent);
+    // if(window.lastSceneParent) window.lastSceneParent.filters = [];
     this.pageNumber = page;
     this._updateScene();
   }
@@ -165,16 +165,13 @@ export default class View {
   }
 
   _onView3Click() {
-    console.log('---------------- _onView3Click()');
     this.blockMultClicks(function () {
 
       if (!this.isWin && this.retryCount < MAX_RETRIES) {
-        console.log('------------------ try again');
         this.backgroundScene.showBackground(0);
         this._setPage(1);
       }
       else {
-        console.log('----------------- 0');
         this.backgroundScene.showBackground(2);
         defaultLifeCycle.end();
       }
@@ -201,17 +198,17 @@ export default class View {
     if (this.isWin) {
       defaultLifeCycle.join(null, JOIN_IMAGE, isWin, null);
       this.scenes[1]['scene'].sceneStop();
-      defaultLifeCycle.end();
     }
     else {
-      this.scenes[2]['scene'].result = isWin;
-      this.scenes[2]['scene'].retryCount = this.retryCount;
-      this._setPage(2);
       this.retryCount += 1;
 
       if (this.retryCount >= MAX_RETRIES) {
         defaultLifeCycle.join(null, JOIN_IMAGE, isWin, null);
       }
     }
+
+    this.scenes[2]['scene'].result = isWin;
+    this.scenes[2]['scene'].retryCount = this.retryCount;
+    this._setPage(2);
   }
 }
