@@ -143,6 +143,8 @@ export default class View1 extends HexiGroup {
 
         defaultLifeCycle.end();
       }, 5 * 1000);
+    } else {
+      setTimeout(defaultLifeCycle.end, 5 * 1000);
     }
   }
 

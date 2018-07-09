@@ -142,26 +142,45 @@ export default class View {
   }
 
   _onView1Click() {
-    this._setPage(1);
-    this.backgroundScene.showBackground(0);
-    defaultLifeCycle.start();
+    this.blockMultClicks(function () {
+
+      this._setPage(1);
+      this.backgroundScene.showBackground(0);
+      defaultLifeCycle.start();
+
+    }.bind(this));
   }
 
   _onView2Click() {
-    this.backgroundScene.showBackground(2);
-    this._setPage(2);
+    this.blockMultClicks(function () {    
 
+      this.backgroundScene.showBackground(2);
+      this._setPage(2);
+
+    }.bind(this));
   }
 
   _onView3Click() {
-    // this._setPage(0);
-    if (!this.isWin && this.retryCount < MAX_RETRIES) {
-      this.backgroundScene.showBackground(0);
-      this._setPage(1);
-    }
-    else {
-      this.backgroundScene.showBackground(2);
-      defaultLifeCycle.end();
+    this.blockMultClicks(function () {
+
+      if (!this.isWin && this.retryCount < MAX_RETRIES) {
+        this.backgroundScene.showBackground(0);
+        this._setPage(1);
+      }
+      else {
+        this.backgroundScene.showBackground(2);
+        defaultLifeCycle.end();
+      }
+      
+    }.bind(this));
+  }
+
+  blockMultClicks(callback) {
+    window.lastClickTime = window.lastClickTime || 0;
+    var clickTime = new Date().getTime();
+    if (clickTime - window.lastClickTime > 500) {
+      window.lastClickTime = clickTime;
+      callback();
     }
   }
 
@@ -175,17 +194,17 @@ export default class View {
     if (this.isWin) {
       defaultLifeCycle.join(null, JOIN_IMAGE, isWin, null);
       this.scenes[1]['scene'].sceneStop();
-      defaultLifeCycle.end();
     }
     else {
-      this.scenes[2]['scene'].result = isWin;
-      this.scenes[2]['scene'].retryCount = this.retryCount;
-      this._setPage(2);
       this.retryCount += 1;
 
       if (this.retryCount >= MAX_RETRIES) {
         defaultLifeCycle.join(null, JOIN_IMAGE, isWin, null);
       }
     }
+
+    this.scenes[2]['scene'].result = isWin;
+    this.scenes[2]['scene'].retryCount = this.retryCount;
+    this._setPage(2);
   }
 }
