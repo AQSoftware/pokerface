@@ -57,7 +57,7 @@ export default class View3 extends HexiGroup {
     this.imageHolder.on('click', function(){
       this.props._onReset();
     }.bind(this));
-    
+
     this.imageHolder.parent.removeChild(this.imageHolder);
     this.scene.addChild(this.imageHolder);
 
@@ -151,11 +151,11 @@ export default class View3 extends HexiGroup {
         TweenMax.to(filter, 1.5, { blur: 10, ease: Power3.easeInOut });
 
         defaultLifeCycle.end();
-      }, 5 * 1000);
+      }, 2 * 1000);
     } else {
       setTimeout(() => {
         defaultLifeCycle.end();
-      }, 5 * 1000);
+      }, 2 * 1000);
     }
   }
 
