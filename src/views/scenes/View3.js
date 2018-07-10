@@ -108,6 +108,7 @@ export default class View3 extends HexiGroup {
       else {
         image = SpriteHappy;
       }
+      doBlur = true;
     }
     else {
       // Max retries should use sorry image
@@ -152,7 +153,9 @@ export default class View3 extends HexiGroup {
         defaultLifeCycle.end();
       }, 5 * 1000);
     } else {
-      setTimeout(defaultLifeCycle.end, 5 * 1000);
+      setTimeout(() => {
+        defaultLifeCycle.end();
+      }, 5 * 1000);
     }
   }
 
