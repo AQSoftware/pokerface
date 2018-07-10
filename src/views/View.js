@@ -208,7 +208,7 @@ export default class View {
     }
 
     this.scenes[2]['scene'].result = isWin;
-    this.scenes[2]['scene'].retryCount = this.retryCount;
+    this.scenes[2]['scene'].retryCount = this.retryCount - 1;
     this._setPage(2);
   }
 }
