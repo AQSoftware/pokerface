@@ -152,10 +152,6 @@ export default class View3 extends HexiGroup {
 
         defaultLifeCycle.end();
       }, 2 * 1000);
-    } else {
-      setTimeout(() => {
-        defaultLifeCycle.end();
-      }, 2 * 1000);
     }
   }
 

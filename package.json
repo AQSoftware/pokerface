@@ -7,9 +7,11 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "rm -rf build/ && node scripts/build.js",
+    "package": "rm -f build/package.zip && cd build/ && zip -r package.zip *",
+    "sha": "shasum build/package.zip",
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "aws s3 sync build/ s3://bengga-web-funtypes/production/poker-face",
-    "redeploy": "npm run build && npm run deploy"
+    "redeploy": "npm run build && npm run package && npm run deploy && npm run sha"
   },
   "author": "Ryan C. Brozo",
   "license": "UNLICENSED",
