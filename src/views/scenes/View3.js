@@ -37,7 +37,6 @@ export default class View3 extends HexiGroup {
     this.button = new HexiButton(this.hexi, 227, 69, {
       title: 'Done',
       textureAtlas: Assets.textures.button,
-      onPress: this.props.onPress
     });
     this.button.setup();
     this.button.scene.setPosition(

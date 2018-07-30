@@ -98,6 +98,7 @@ export default class View {
 
   start() {
     this.hexi.start();
+    LifeCycle.informReady();
   }
 
   /**
@@ -117,9 +118,6 @@ export default class View {
       this.scenes[i]['scene'].setup();
     }
     this._setPage(0);
-
-    // Inform AQ App that it is ready to display the content after a specific delay
-    setTimeout(() => {LifeCycle.informReady();}, 200);
   }
 
   _setPage(page: number) {
