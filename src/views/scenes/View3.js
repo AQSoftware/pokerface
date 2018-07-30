@@ -53,10 +53,6 @@ export default class View3 extends HexiGroup {
       this.center.x,
       this.center.y
     );
-    this.imageHolder.interactive = true;
-    this.imageHolder.on('click', function(){
-      this.props._onReset();
-    }.bind(this));
 
     this.imageHolder.parent.removeChild(this.imageHolder);
     this.scene.addChild(this.imageHolder);
