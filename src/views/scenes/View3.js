@@ -150,13 +150,16 @@ export default class View3 extends HexiGroup {
         // window.lastSceneParent.aaaaaaaaaa___THIS = "THIS!!!!!";
         TweenMax.to(filter, 1.5, { blur: 10, ease: Power3.easeInOut });
 
-        LifeCycle.end();
+        setTimeout(() => {
+          LifeCycle.end();
+        }, 1000);
       }, 2 * 1000);
     }
   }
 
   _sceneReset() {
     this.result = false;
+    this.scene.parent.filters = [];
     TweenMax.killTweensOf(this.imageHolder);
     TweenMax.set(this.imageHolder, { pixi: { alpha: 0, scaleX: 0, scaleY: 0 } });
   }
