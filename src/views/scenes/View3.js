@@ -1,5 +1,5 @@
 // @flow
-import { defaultLifeCycle } from 'aq-miniapp-core';
+import { LifeCycle } from 'aq-miniapp-core';
 
 import { HexiGroup, HexiButton } from '../../components';
 import Assets, { DynamicAssets, DYNAMIC_ASSETS } from '../../assets';
@@ -150,7 +150,7 @@ export default class View3 extends HexiGroup {
         // window.lastSceneParent.aaaaaaaaaa___THIS = "THIS!!!!!";
         TweenMax.to(filter, 1.5, { blur: 10, ease: Power3.easeInOut });
 
-        defaultLifeCycle.end();
+        LifeCycle.end();
       }, 2 * 1000);
     }
   }

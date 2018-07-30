@@ -2,10 +2,7 @@
 import Assets, { ASSETS, DYNAMIC_ASSETS, DynamicAssets } from '../assets';
 import HexiGroup from '../components';
 import {
-  defaultLifeCycle,
-  defaultUIBridge,
-  CloudStorage,
-  MediaStorage,
+  LifeCycle, WinCriteriaEnum,
   Utils
 } from 'aq-miniapp-core';
 import {
@@ -29,10 +26,6 @@ export type Props = {
   data?: {
     shouldWin: boolean,
     winImage?: string
-  },
-  clients: {
-    cloudStorageClient: CloudStorage,
-    mediaStorageClient: MediaStorage
   }
 }
 
@@ -89,9 +82,8 @@ export default class View {
       })
     });
 
-    defaultLifeCycle.setOnResetCallback(this.onReset.bind(this));
-    // defaultLifeCycle.setAppData({backgroundImage: `${window.location.origin}${bg}`});
-    defaultLifeCycle.setAppData({backgroundImage: `${Utils.relativeToAbsolutePath(bg)}`});
+    LifeCycle.setOnResetCallback(this.onReset.bind(this));
+    LifeCycle.setAppData({backgroundImage: `${Utils.relativeToAbsolutePath(bg)}`});
 
     this.retryCount = 0;
   }
@@ -127,7 +119,7 @@ export default class View {
     this._setPage(0);
 
     // Inform AQ App that it is ready to display the content after a specific delay
-    setTimeout(() => {defaultLifeCycle.informReady();}, 200);
+    setTimeout(() => {LifeCycle.informReady();}, 200);
   }
 
   _setPage(page: number) {
@@ -150,7 +142,7 @@ export default class View {
 
       this._setPage(1);
       this.backgroundScene.showBackground(0);
-      defaultLifeCycle.start();
+      LifeCycle.start();
 
     }.bind(this));
   }
@@ -173,7 +165,7 @@ export default class View {
       }
       else {
         this.backgroundScene.showBackground(2);
-        defaultLifeCycle.end();
+        LifeCycle.end();
       }
       
     }.bind(this));
@@ -194,16 +186,21 @@ export default class View {
     if (isTimeout) {
       this.retryCount = MAX_RETRIES;
     }
-
-    if (this.isWin) {
-      defaultLifeCycle.join(null, JOIN_IMAGE, isWin, null);
+    const param = {
+      winCriteria: isWin ? WinCriteriaEnum.Win : WinCriteriaEnum.Lose,
+      resultImageUrl: JOIN_IMAGE,
+      score: {
+        value: 0
+      }
+    }
+    if (this.isWin) {      
+      LifeCycle.setResult(param);
       this.scenes[1]['scene'].sceneStop();
     }
     else {
       this.retryCount += 1;
-
       if (this.retryCount >= MAX_RETRIES) {
-        defaultLifeCycle.join(null, JOIN_IMAGE, isWin, null);
+        LifeCycle.setResult(param);
       }
     }
 

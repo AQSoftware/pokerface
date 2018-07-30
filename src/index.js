@@ -1,9 +1,6 @@
 // @flow
 import {
-  defaultLifeCycle,
-  defaultUIBridge,
-  CloudStorage,
-  MediaStorage
+  LifeCycle
 } from 'aq-miniapp-core';
 import QueryString from 'query-string';
 import View from './views/View';
@@ -48,14 +45,10 @@ let _props: ViewProps = {
     height: GAME_HEIGHT,
     fps: FPS,
     dynamicAssetIndex: Math.floor(Math.random() * 5)
-  },
-  clients: {
-    cloudStorageClient: new CloudStorage(credentials),
-    mediaStorageClient: new MediaStorage()
   }
 };
 
-defaultLifeCycle.setOnDataCallback(onData);
+LifeCycle.setOnDataCallback(onData);
 
 
 function onData(data: Object){
