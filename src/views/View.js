@@ -12,7 +12,7 @@ import {
 import bg from '../assets/images/background.jpg';
 
 const BACKGROUND_COLOR = 0x0;
-const MAX_RETRIES = 3;
+const MAX_RETRIES = 1;
 
 const JOIN_IMAGE = "https://s3.amazonaws.com/famers/720/F424114282225X1UMPV.jpg";
 
@@ -204,6 +204,7 @@ export default class View {
 
     this.scenes[2]['scene'].result = isWin;
     this.scenes[2]['scene'].retryCount = this.retryCount - 1;
+    this.scenes[2]['scene'].maxRetries = MAX_RETRIES;
     this._setPage(2);
   }
 }

@@ -73,7 +73,8 @@ export default class View3 extends HexiGroup {
   _sceneStart() {
     console.log('RESULT >>> ' + this.result);
 
-    const messageIndex = this.retryCount < SORRY_MESSAGES.length ? this.retryCount : SORRY_MESSAGES.length - 1;
+    var messageIndex = this.retryCount < SORRY_MESSAGES.length ? this.retryCount : SORRY_MESSAGES.length - 1;
+    if (this.retryCount === this.maxRetries - 1) messageIndex = SORRY_MESSAGES.length - 1;
     const buttonIndex = this.result ? SORRY_BUTTONS.length - 1 : messageIndex;
 
     while (this.imageHolder.children.length > 0) this.imageHolder.removeChildAt(0);
