@@ -182,7 +182,7 @@ export default class View {
     this.backgroundScene.showBackground(2);
     this.isWin = isWin;
     if (isTimeout) {
-      this.retryCount = MAX_RETRIES;
+      this.retryCount = MAX_RETRIES - 1;
     }
     const param = {
       winCriteria: isWin ? WinCriteriaEnum.Win : WinCriteriaEnum.Lose,
