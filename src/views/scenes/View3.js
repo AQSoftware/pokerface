@@ -125,7 +125,7 @@ export default class View3 extends HexiGroup {
     spriteImage.setPosition(-spriteImage.width / 2, -spriteImage.height / 2);
     this.imageHolder.addChild(spriteImage);
 
-    const message = this.result ? (this.props.winImage ? 'You won a gift!' : "CONGRATS!") : SORRY_MESSAGES[messageIndex];
+    const message = this.result ? (this.props.winImage ? 'You won a gift!' : "Congratulations!") : SORRY_MESSAGES[messageIndex];
     const title = this.hexi.text(message);
     title.style = { fontFamily: "Futura", fontSize: "40px", align: 'center' };
     title.setPosition(-title.width / 2, -spriteImage.height / 2 - title.height * 1);
