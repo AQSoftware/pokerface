@@ -11,7 +11,7 @@ import {
 } from './scenes';
 import bg from '../assets/images/background.jpg';
 
-const BACKGROUND_COLOR = 0x0;
+const BACKGROUND_COLOR = 0xCCCCCC;
 const MAX_RETRIES = 1;
 
 const JOIN_IMAGE = "https://s3.amazonaws.com/famers/720/F424114282225X1UMPV.jpg";
@@ -97,8 +97,7 @@ export default class View {
   }
 
   start() {
-    this.hexi.start();
-    LifeCycle.informReady();
+    this.hexi.start();    
   }
 
   /**
@@ -118,6 +117,7 @@ export default class View {
       this.scenes[i]['scene'].setup();
     }
     this._setPage(0);
+    LifeCycle.informReady();
   }
 
   _setPage(page: number) {
