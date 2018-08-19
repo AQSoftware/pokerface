@@ -4169,6 +4169,10 @@ pinkie@^2.0.0:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
 
+pixi-sound@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/pixi-sound/-/pixi-sound-2.0.2.tgz#3a48d72287b0a5ce2d20a240ec0d724a9f62c0a2"
+
 pkg-dir@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/pkg-dir/-/pkg-dir-1.0.0.tgz#7a4b508a8d5bb2d629d447056ff4e9c9314cf3d4"

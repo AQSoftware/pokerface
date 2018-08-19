@@ -56,6 +56,8 @@ export default class View3 extends HexiGroup {
     this.imageHolder.parent.removeChild(this.imageHolder);
     this.scene.addChild(this.imageHolder);
 
+    this.winSound = PIXI.sound.Sound.from(Assets.sounds.win);
+    this.lose = PIXI.sound.Sound.from(Assets.sounds.lose);
     this._sceneReset();
   }
 
@@ -105,6 +107,7 @@ export default class View3 extends HexiGroup {
         image = SpriteHappy;
       }
       doBlur = true;
+      this.winSound.play();
     }
     else {
       // Max retries should use sorry image
@@ -116,6 +119,7 @@ export default class View3 extends HexiGroup {
         // Use sad smiley if lose
         image = SpriteSad;
       }
+      this.lose.play();
     }
 
     this.result ? (this.props.winImage ? this.props.winImage : SpriteHappy) : SpriteSad;
@@ -149,7 +153,7 @@ export default class View3 extends HexiGroup {
         setTimeout(() => {
           LifeCycle.end();
         }, 1000);
-      }, 2 * 1000);
+      }, 2.5 * 1000);
     }
   }
 

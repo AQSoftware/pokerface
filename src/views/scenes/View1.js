@@ -1,7 +1,8 @@
 // @flow
 import { HexiGroup, HexiButton } from '../../components';
-import Assets, { DYNAMIC_ASSETS } from '../../assets';
+import Assets, { DYNAMIC_ASSETS, ASSETS } from '../../assets';
 import fitObject from '../../libs/Utils';
+import 'pixi-sound';
 
 import TweenMax from '../../libs/gsap/TweenMax.min';
 import PixiPlugin from '../../libs/gsap/plugins/PixiPlugin.min';
@@ -41,29 +42,29 @@ export default class View1 extends HexiGroup {
     let lastY = 0;
 
     this.bubble1 = PIXI.Sprite.fromImage(Assets.images.bubbleLeft);
-    this.bubble1.pivot.x = 130;
+    this.bubble1.pivot.x = 170;
     this.bubble1.pivot.y = this.bubble1.height;
     this.bubble1.x = -400;
     this.bubble1.scale.set(BUBBLE_SCALE);
-    this.bubble1.y = this.bubble1.height + 80;
+    this.bubble1.y = this.bubble1.height + 70;
     // this.bubble1.rotation = -0.5;
 
     this.bubble2 = PIXI.Sprite.fromImage(Assets.images.bubbleRight);
-    this.bubble2.pivot.x = 130;
+    this.bubble2.pivot.x = -10;
     this.bubble2.pivot.y = this.bubble1.height;
     this.bubble2.x = 60;
     this.bubble2.scale.set(BUBBLE_SCALE);
-    this.bubble2.y = this.bubble1.height - 190;
+    this.bubble2.y = this.bubble1.height + 40;
     // this.bubble2.rotation = 0.5;
 
     this.title1 = new PIXI.Text("Find me!",
-      new PIXI.TextStyle({ fontFamily: "Futura", fontSize: "100px", fill: ['#ffffff'], align: 'center' }));
+      new PIXI.TextStyle({ fontFamily: "Futura", fontSize: "160px", fill: ['#ffffff'], align: 'center' }));
     this.title1.x = (this.bubble1.width / this.bubble1.scale.x - this.title1.width) / 2;// mult by scale to compensate until first render
     this.title1.y = 180;
     this.bubble1.addChild(this.title1);
 
     this.title2 = new PIXI.Text("Then\ntap me",
-      new PIXI.TextStyle({ fontFamily: "Futura", fontSize: "160px", fill: ['#ffffff'], align: 'center' }));
+      new PIXI.TextStyle({ fontFamily: "Futura", fontSize: "100px", fill: ['#ffffff'], align: 'center' }));
     this.title2.x = (this.bubble2.width / this.bubble2.scale.x - this.title2.width) / 2;// mult by scale to compensate until first render
     this.title2.y = 100;
     this.bubble2.addChild(this.title2);
@@ -98,6 +99,8 @@ export default class View1 extends HexiGroup {
     this.welcomeGraphics.x = this.center.x;
     this.welcomeGraphics.y = (availY - this.welcomeGraphics.height) / 2;
 
+    // sound
+    this.popSound = PIXI.sound.Sound.from(Assets.sounds.pop);
     this.scene.addChild(this.welcomeGraphics);
     this._sceneReset();
   }
@@ -119,6 +122,7 @@ export default class View1 extends HexiGroup {
       TweenMax.to(this.image, .5, { pixi: { alpha: 1, y: this.image.origY, scaleX: 1, scaleY: 1 }, ease: Sine.easeOut });
       TweenMax.to(this.bubble1, .25, { pixi: { alpha: 1, scaleX: BUBBLE_SCALE, scaleY: BUBBLE_SCALE }, delay: .3, ease: Back.easeOut });
       TweenMax.to(this.bubble2, .25, { pixi: { alpha: 1, scaleX: BUBBLE_SCALE, scaleY: BUBBLE_SCALE }, delay: .3, ease: Back.easeOut });
+      this.popSound.play();
     }, 800);    
   }
 

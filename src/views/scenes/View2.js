@@ -20,12 +20,14 @@ export default class View2 extends HexiGroup {
       onSmileyPress: this.props.onSmileyPress,
       itemsPerRow: 5
     });
+    this.bgmusic = PIXI.sound.Sound.from(Assets.sounds.bgmusic);
   }
 
   set enabled(value: boolean) {
     super.enabled = value;
     if (value) {
       this.hexi.stage.addChild(this.smileys.scene);
+      this.bgmusic.stop();
     } else {
       this.hexi.stage.removeChild(this.smileys.scene);
     }
@@ -41,11 +43,15 @@ export default class View2 extends HexiGroup {
   _sceneStart() {
     this.smileys.generateSmilies();
     this.smileys.start();
+    this.bgmusic.play({
+      loop: true
+    });
   }
 
   _sceneReset() {
     this.smileys.stop();
     this.smileys.disposeSmilies();
+    this.bgmusic.stop();
   }
 
   sceneStop() {

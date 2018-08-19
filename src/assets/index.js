@@ -12,6 +12,11 @@ import smileySad from './images/emoji-2.png';
 import bubbleLeft from './images/bubble-left.png';
 import bubbleRight from './images/bubble-right.png';
 
+import bgmusic from './sounds/Funky_Sting.mp3';
+import lose from './sounds/lose.mp3';
+import pop from './sounds/pop.mp3';
+import win from './sounds/win.mp3';
+
 /* Define common assets here */
 const Assets = {
   images: {
@@ -27,6 +32,10 @@ const Assets = {
     button: button
   },
   sounds: {
+    bgmusic: bgmusic,
+    lose: lose,
+    pop: pop,
+    win: win
   },
   fonts: {
   }
@@ -57,7 +66,11 @@ export const ASSETS = [
   Assets.images.bubbleLeft,
   Assets.images.bubbleRight,
   Assets.images.sorry,
-  Assets.textures.button
+  Assets.textures.button,
+  // Assets.sounds.bgmusic,
+  // Assets.sounds.lose,
+  // Assets.sounds.win,
+  // Assets.sounds.pop
 ];
 
 /* Array of dynamic assets to be used by View.js. The index specified
