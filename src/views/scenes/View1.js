@@ -116,13 +116,15 @@ export default class View1 extends HexiGroup {
     }
   }
 
-  _sceneStart() {
+  _sceneStart() {    
     setTimeout(() => {
       this.image.position.y = this.image.origY + 50;
       TweenMax.to(this.image, .5, { pixi: { alpha: 1, y: this.image.origY, scaleX: 1, scaleY: 1 }, ease: Sine.easeOut });
       TweenMax.to(this.bubble1, .25, { pixi: { alpha: 1, scaleX: BUBBLE_SCALE, scaleY: BUBBLE_SCALE }, delay: .3, ease: Back.easeOut });
-      TweenMax.to(this.bubble2, .25, { pixi: { alpha: 1, scaleX: BUBBLE_SCALE, scaleY: BUBBLE_SCALE }, delay: .3, ease: Back.easeOut });
       this.popSound.play();
+      setTimeout(() => {
+        TweenMax.to(this.bubble2, .25, { pixi: { alpha: 1, scaleX: BUBBLE_SCALE, scaleY: BUBBLE_SCALE }, delay: .3, ease: Back.easeOut });      
+      }, 800);
     }, 800);    
   }
 
