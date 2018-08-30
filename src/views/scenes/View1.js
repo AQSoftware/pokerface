@@ -21,17 +21,32 @@ const BUBBLE_SCALE = .7;
 export default class View1 extends HexiGroup {
 
   setup() {
-    this.button = new HexiButton(this.hexi, 227, 69, {
-      title: 'Tap to start',
+    // this.button = new HexiButton(this.hexi, 227, 69, {
+    //   title: 'Tap to start',
+    //   textureAtlas: Assets.textures.button,
+    //   onPress: this.props.onPress
+    // });
+    // this.button.setup();
+    // this.button.scene.setPosition(
+    //   (this.width - BUTTON_WIDTH) / 2.0,
+    //   (this.height - BUTTON_HEIGHT) - BUTTON_BOTTOM_PAD
+    // )
+    // this.scene.addChild(this.button.scene);
+    //tap anywhere
+    this.button = new HexiButton(this.hexi, this.width / 2, this.height / 2, {
+      title: '',
       textureAtlas: Assets.textures.button,
       onPress: this.props.onPress
     });
     this.button.setup();
-    this.button.scene.setPosition(
-      (this.width - BUTTON_WIDTH) / 2.0,
-      (this.height - BUTTON_HEIGHT) - BUTTON_BOTTOM_PAD
-    )
+    this.button.scene.setPosition(this.width / 4, this.height / 4)
     this.scene.addChild(this.button.scene);
+
+    this.tapText = new PIXI.Text("TAP TO START",
+      new PIXI.TextStyle({ fontFamily: "Futura", fontSize: "35px", fill: ['#000000'], align: 'center' }));
+    this.tapText.x = (this.width - BUTTON_WIDTH) / 2.0;
+    this.tapText.y = (this.height - BUTTON_HEIGHT) - BUTTON_BOTTOM_PAD;
+    this.scene.addChild(this.tapText);
 
     this.center = { x: this.width / 2, y: this.height / 2 };
 
@@ -89,7 +104,8 @@ export default class View1 extends HexiGroup {
     // this.arrow.y = 550;
     // this.scene.addChild(this.arrow);
 
-    const availY = this.button.scene.y - BUTTON_BOTTOM_PAD;// calc available Y space
+    // const availY = this.button.scene.y - BUTTON_BOTTOM_PAD;// calc available Y space
+    const availY = this.tapText.y - BUTTON_BOTTOM_PAD;// calc available Y space
     fitObject(this.welcomeGraphics,
       this.width - WELCOME_PAD_X * 2,
       availY - WELCOME_PAD_Y * 2
@@ -116,16 +132,16 @@ export default class View1 extends HexiGroup {
     }
   }
 
-  _sceneStart() {    
+  _sceneStart() {
     setTimeout(() => {
       this.image.position.y = this.image.origY + 50;
       TweenMax.to(this.image, .5, { pixi: { alpha: 1, y: this.image.origY, scaleX: 1, scaleY: 1 }, ease: Sine.easeOut });
       TweenMax.to(this.bubble1, .25, { pixi: { alpha: 1, scaleX: BUBBLE_SCALE, scaleY: BUBBLE_SCALE }, delay: .3, ease: Back.easeOut });
       this.popSound.play();
       setTimeout(() => {
-        TweenMax.to(this.bubble2, .25, { pixi: { alpha: 1, scaleX: BUBBLE_SCALE, scaleY: BUBBLE_SCALE }, delay: .3, ease: Back.easeOut });      
+        TweenMax.to(this.bubble2, .25, { pixi: { alpha: 1, scaleX: BUBBLE_SCALE, scaleY: BUBBLE_SCALE }, delay: .3, ease: Back.easeOut });
       }, 800);
-    }, 800);    
+    }, 800);
   }
 
   _sceneReset() {
