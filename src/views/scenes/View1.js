@@ -33,13 +33,13 @@ export default class View1 extends HexiGroup {
     // )
     // this.scene.addChild(this.button.scene);
     //tap anywhere
-    this.button = new HexiButton(this.hexi, this.width / 2, this.height / 2, {
+    this.button = new HexiButton(this.hexi, this.width, this.height, {
       title: '',
       textureAtlas: Assets.textures.button,
       onPress: this.props.onPress
     });
     this.button.setup();
-    this.button.scene.setPosition(this.width / 4, this.height / 4)
+    this.button.scene.setPosition(0,0)
     this.scene.addChild(this.button.scene);
 
     this.tapText = new PIXI.Text("TAP TO START",
