@@ -54,8 +54,8 @@ LifeCycle.setOnDataCallback(onData);
 function onData(data: Object){
   console.log('===== onData');
   _props.data = data;
-  // _props.app.width = window.innerWidth * RESOLUTION_SCALE;
-  // _props.app.height = window.innerHeight * RESOLUTION_SCALE;
+  _props.app.width = window.innerWidth;
+  _props.app.height = window.innerHeight;
   start();
 }
 
