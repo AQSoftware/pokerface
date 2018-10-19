@@ -32,7 +32,7 @@ const RESOLUTION_SCALE = GAME_HEIGHT / window.innerHeight;
 const GAME_WIDTH = window.innerWidth * RESOLUTION_SCALE;
 // const GAME_HEIGHT = window.innerHeight * RESOLUTION_SCALE;
 const FPS = 30;
-const DEVT = false;
+const DEVT = true;
 
 const credentials = {
   id: 'GQ9JsIkvEeePub7saR1uXQ',
@@ -57,6 +57,14 @@ function onData(data: Object){
   // _props.app.width = window.innerWidth * RESOLUTION_SCALE;
   // _props.app.height = window.innerHeight * RESOLUTION_SCALE;
   start();
+}
+
+function onResize() {
+  console.log(`resize ${window.innerWidth} ${window.innerHeight}`);
+  var RESOLUTION_SCALE = GAME_HEIGHT / window.innerHeight;
+  var GAME_WIDTH = window.innerWidth * RESOLUTION_SCALE;
+  _props.app.width = GAME_WIDTH;
+  _props.app.height = GAME_HEIGHT;
 }
 
 function start(){
@@ -95,6 +103,8 @@ function start(){
     view.start();
   }
 }
+
+window.onresize = onResize;
 
 if (DEVT) {
   // onData({});
