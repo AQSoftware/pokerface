@@ -5,7 +5,7 @@ import {
 import QueryString from 'query-string';
 import View from './views/View';
 import Create from './views/Create';
-import type {Props as ViewProps} from './views/View';
+import type { Props as ViewProps } from './views/View';
 
 // const GAME_WIDTH = 528;
 // const GAME_HEIGHT = 939;
@@ -32,7 +32,7 @@ const RESOLUTION_SCALE = GAME_HEIGHT / window.innerHeight;
 const GAME_WIDTH = window.innerWidth * RESOLUTION_SCALE;
 // const GAME_HEIGHT = window.innerHeight * RESOLUTION_SCALE;
 const FPS = 30;
-const DEVT = true;
+const DEVT = false;
 
 const credentials = {
   id: 'GQ9JsIkvEeePub7saR1uXQ',
@@ -51,7 +51,7 @@ let _props: ViewProps = {
 LifeCycle.setOnDataCallback(onData);
 
 
-function onData(data: Object){
+function onData(data: Object) {
   console.log('===== onData');
   _props.data = data;
   // _props.app.width = window.innerWidth * RESOLUTION_SCALE;
@@ -59,15 +59,7 @@ function onData(data: Object){
   start();
 }
 
-function onResize() {
-  console.log(`resize ${window.innerWidth} ${window.innerHeight}`);
-  var RESOLUTION_SCALE = GAME_HEIGHT / window.innerHeight;
-  var GAME_WIDTH = window.innerWidth * RESOLUTION_SCALE;
-  _props.app.width = GAME_WIDTH;
-  _props.app.height = GAME_HEIGHT;
-}
-
-function start(){
+function start() {
   let query = QueryString.parse(window.location.search);
   let view: ?Object = null;
 
@@ -82,29 +74,27 @@ function start(){
           console.error(message);
         }
         else {
-          let props = {..._props, id: query.id, mode: 'join'};
+          let props = { ..._props, id: query.id, mode: 'join' };
           view = new View(props);
         }
         break;
       case 'preview':
-        if (_props.data != null){
-          let props = {..._props, mode: 'preview'};
+        if (_props.data != null) {
+          let props = { ..._props, mode: 'preview' };
           view = new View(props);
         }
         break;
       default:
-        let props = {..._props, mode: 'preview'};
+        let props = { ..._props, mode: 'preview' };
         view = new Create(props);
         break;
     }
   }
 
-  if (view){
+  if (view) {
     view.start();
   }
 }
-
-window.onresize = onResize;
 
 if (DEVT) {
   // onData({});
