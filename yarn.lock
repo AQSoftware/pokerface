@@ -140,6 +140,16 @@ aproba@^1.0.3, aproba@^1.1.1:
     uuid "^3.1.0"
     whatwg-fetch "^2.0.3"
 
+"aq-miniapp-core@https://s3-ap-southeast-1.amazonaws.com/funminiapps/sdk/aq-miniapp-core-v0.0.19.tgz":
+  version "0.0.19"
+  resolved "https://s3-ap-southeast-1.amazonaws.com/funminiapps/sdk/aq-miniapp-core-v0.0.19.tgz#eac3b9ce533f6949b4ce3b8c7a6b7a66a0dbc075"
+  dependencies:
+    base64-js "^1.2.1"
+    hawk "^6.0.2"
+    text-encoding-utf-8 "^1.0.1"
+    uuid "^3.1.0"
+    whatwg-fetch "^2.0.3"
+
 are-we-there-yet@~1.1.2:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/are-we-there-yet/-/are-we-there-yet-1.1.5.tgz#4b35c2944f062a8bfcda66410760350fe9ddfc21"

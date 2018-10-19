@@ -5,7 +5,7 @@ import {
 import QueryString from 'query-string';
 import View from './views/View';
 import Create from './views/Create';
-import type {Props as ViewProps} from './views/View';
+import type { Props as ViewProps } from './views/View';
 
 // const GAME_WIDTH = 528;
 // const GAME_HEIGHT = 939;
@@ -51,7 +51,7 @@ let _props: ViewProps = {
 LifeCycle.setOnDataCallback(onData);
 
 
-function onData(data: Object){
+function onData(data: Object) {
   console.log('===== onData');
   _props.data = data;
   _props.app.width = window.innerWidth;
@@ -59,7 +59,7 @@ function onData(data: Object){
   start();
 }
 
-function start(){
+function start() {
   let query = QueryString.parse(window.location.search);
   let view: ?Object = null;
 
@@ -74,24 +74,24 @@ function start(){
           console.error(message);
         }
         else {
-          let props = {..._props, id: query.id, mode: 'join'};
+          let props = { ..._props, id: query.id, mode: 'join' };
           view = new View(props);
         }
         break;
       case 'preview':
-        if (_props.data != null){
-          let props = {..._props, mode: 'preview'};
+        if (_props.data != null) {
+          let props = { ..._props, mode: 'preview' };
           view = new View(props);
         }
         break;
       default:
-        let props = {..._props, mode: 'preview'};
+        let props = { ..._props, mode: 'preview' };
         view = new Create(props);
         break;
     }
   }
 
-  if (view){
+  if (view) {
     view.start();
   }
 }
