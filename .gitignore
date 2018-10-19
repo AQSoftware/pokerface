@@ -301,3 +301,7 @@ DerivedData/
 
 
 # End of https://www.gitignore.io/api/node,macos,reactnative,visualstudiocode
+
+
+# Version file for deployment purposes
+version
