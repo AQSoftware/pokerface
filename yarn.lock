@@ -130,16 +130,6 @@ aproba@^1.0.3, aproba@^1.1.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/aproba/-/aproba-1.2.0.tgz#6802e6264efd18c790a1b0d517f0f2627bf2c94a"
 
-"aq-miniapp-core@https://s3-ap-southeast-1.amazonaws.com/funminiapps/sdk/aq-miniapp-core-v0.0.17.tgz":
-  version "0.0.17"
-  resolved "https://s3-ap-southeast-1.amazonaws.com/funminiapps/sdk/aq-miniapp-core-v0.0.17.tgz#3e9fee653135ed2ffee01efcedd4a375a57c9393"
-  dependencies:
-    base64-js "^1.2.1"
-    hawk "^6.0.2"
-    text-encoding-utf-8 "^1.0.1"
-    uuid "^3.1.0"
-    whatwg-fetch "^2.0.3"
-
 "aq-miniapp-core@https://s3-ap-southeast-1.amazonaws.com/funminiapps/sdk/aq-miniapp-core-v0.0.19.tgz":
   version "0.0.19"
   resolved "https://s3-ap-southeast-1.amazonaws.com/funminiapps/sdk/aq-miniapp-core-v0.0.19.tgz#eac3b9ce533f6949b4ce3b8c7a6b7a66a0dbc075"
