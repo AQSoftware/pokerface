@@ -153,7 +153,7 @@ export default class View3 extends HexiGroup {
         setTimeout(() => {
           LifeCycle.end();
         }, 1000);
-      }, 1.5 * 1000);
+      }, 1.75 * 1000);
     }
   }
 
