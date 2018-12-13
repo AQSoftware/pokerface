@@ -124,8 +124,8 @@ export default class View3 extends HexiGroup {
 
     this.result ? (this.props.winImage ? this.props.winImage : SpriteHappy) : SpriteSad;
     const spriteImage = this.hexi.sprite(image);
-    spriteImage.width = 480;
-    spriteImage.height = 480;
+    spriteImage.width = 360;
+    spriteImage.height = 360;
     spriteImage.setPosition(-spriteImage.width / 2, -spriteImage.height / 2);
     this.imageHolder.addChild(spriteImage);
 

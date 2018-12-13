@@ -23,7 +23,7 @@ export default class SmileysMoving {
 
         this.countText = new PIXI.Text('---', {
             fontWeight: 'bold',
-            fontSize: 60,
+            fontSize: 40,
             fontFamily: 'Futura',
             fill: '#000000',
             align: 'center',
@@ -32,7 +32,7 @@ export default class SmileysMoving {
         });
         this._updateTimerText(GAME_TIMEOUT);
         this.countText.x = (this.width - this.countText.width) / 2;
-        this.countText.y = 90;
+        this.countText.y = 4;
         this.scene.addChild(this.countText);
 
         this.itemsContainer = null;
@@ -101,7 +101,7 @@ export default class SmileysMoving {
         for (let i = 0; i < this.ITEMS_TOTAL; i++) {
             let wrap = new PIXI.Graphics();
 
-            isHappy = this.HAPPY_ITEMS_INDEXES.indexOf(i) >= 0;
+            isHappy = this.HAPPY_ITEMS_INDEXES.indexOf(i) >= 0 && i > this.props.itemsPerRow;
             let image = PIXI.Sprite.fromImage(isHappy ? SpriteHappy : SpriteSad);
             image.scale.set(this.ITEM_WIDTH / image.width * .7);
             image.x = (this.ITEM_WIDTH - image.width) / 2;
