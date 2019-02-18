@@ -11,7 +11,7 @@
     "sha": "shasum build/package.zip",
     "test": "echo \"Error: no test specified\" && exit 1",
     "createDeployVersion": "git config user.name > version && git config user.email >> version && git log --pretty=format:'%h%n' -n 1 >> version",
-    "deploy": "aws s3 sync build/ s3://bengga-web-funtypes/production/poker-face",
+    "deploy": "aws s3 sync build/ s3://bengga-web-funtypes/production/wheres-honestbee",
     "redeploy": "npm run createDeployVersion && npm run build && cp version build/ && npm run package && npm run deploy && npm run sha"
   },
   "author": "Ryan C. Brozo",
