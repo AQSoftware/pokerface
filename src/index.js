@@ -49,7 +49,7 @@ let _props: ViewProps = {
 };
 
 LifeCycle.setOnDataCallback(onData);
-
+LifeCycle.informLoaded();
 
 function onData(data: Object) {
   console.log('===== onData');

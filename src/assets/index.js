@@ -3,7 +3,7 @@ import arrow from './images/arrow.png';
 import background from './images/background.jpg';
 import background2 from './images/background2.jpg';
 import backgroundClear from './images/background-clear.jpg';
-import sorry from './images/sorry.jpg';
+import sorry from './images/sorry.png';
 
 import button from './textures/button.json';
 

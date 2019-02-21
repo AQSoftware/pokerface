@@ -7,7 +7,7 @@ import PixiPlugin from '../../libs/gsap/plugins/PixiPlugin.min';
 import { Sine } from '../../libs/gsap/easing/EasePack.min';
 
 type Props = {
-  onPress: (void) => void,
+  onPress: (void) => void, 
   itemsPerRow: Number
 }
 

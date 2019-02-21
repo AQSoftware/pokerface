@@ -17,7 +17,7 @@
   "author": "Ryan C. Brozo",
   "license": "UNLICENSED",
   "dependencies": {
-    "aq-miniapp-core": "https://s3-ap-southeast-1.amazonaws.com/funminiapps/sdk/aq-miniapp-core-v0.0.19.tgz",
+    "aq-miniapp-core": "https://s3-ap-southeast-1.amazonaws.com/funminiapps/sdk/aq-miniapp-core-v0.0.20.tgz",
     "pixi-sound": "^2.0.2"
   },
   "devDependencies": {

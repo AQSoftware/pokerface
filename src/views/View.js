@@ -89,15 +89,16 @@ export default class View {
   }
 
   onReset(data: Object){
-    console.log('***** onReset');    
+    console.log('***** onReset');
     this.backgroundScene.showBackground(1);
     this.isWin = false;
     this.retryCount = 0;
     this._setPage(0);
+    LifeCycle.informLoaded();
   }
 
   start() {
-    this.hexi.start();    
+    this.hexi.start();
   }
 
   /**
@@ -146,7 +147,7 @@ export default class View {
   }
 
   _onView2Click() {
-    this.blockMultClicks(function () {    
+    this.blockMultClicks(function () {
 
       this.backgroundScene.showBackground(2);
       this._setPage(2);
@@ -165,7 +166,7 @@ export default class View {
         this.backgroundScene.showBackground(2);
         LifeCycle.end();
       }
-      
+
     }.bind(this));
   }
 
@@ -191,7 +192,7 @@ export default class View {
         value: 0
       }
     }
-    if (this.isWin) {      
+    if (this.isWin) {
       LifeCycle.setResult(param);
       this.scenes[1]['scene'].sceneStop();
     }
