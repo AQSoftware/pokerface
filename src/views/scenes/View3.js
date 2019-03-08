@@ -22,7 +22,7 @@ const SpriteSad = DynamicAssets.images.smileySad;
 const SORRY_MESSAGES = [
   "Oops.. that's not a smiley",
   "Strike 2...\ndo not disappoint",
-  "" // No text. Text in sorry image already
+  "Not quite" // No text. Text in sorry image already
 ]
 
 const SORRY_BUTTONS = [
@@ -131,7 +131,7 @@ export default class View3 extends HexiGroup {
 
     const message = this.result ? (this.props.winImage ? 'You won a gift!' : "Congratulations!") : SORRY_MESSAGES[messageIndex];
     const title = this.hexi.text(message);
-    title.style = { fontFamily: "Futura", fontSize: "40px", align: 'center' };
+    title.style = { fontFamily: "Futura", fontSize: "40px", align: 'center', fill: this.result ? 'black' : 'red' };
     title.setPosition(-title.width / 2, -spriteImage.height / 2 - title.height * 1);
     this.imageHolder.addChild(title);
 
